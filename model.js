@@ -1,3 +1,27 @@
+function Drawing(forms){
+    this.forms = forms;
+}
 
-// Implémenter ici les 4 classes du modèle.
-// N'oubliez pas l'héritage !
+function Form(color, lineThickness){
+    this.color = color;
+    this.lineThickness = lineThickness;
+}
+
+function Rectangle(color, lineThickness, xStart, yStart, width, height){
+    Form.call(this, color, lineThickness);
+    this.xStart= xStart;
+    this.yStart = yStart;
+    this.width = width;
+    this.height = height;
+}
+Rectangle.prototype = new Form();
+
+function Line(color, lineThickness, xStart, yStart, xEnd, yEnd){
+    Form.call(this, color, lineThickness);
+    this.xStart = xStart;
+    this.xEnd = xEnd;
+    this.yStart = yStart;
+    this.yEnd = yEnd;
+}
+Line.prototype = new Form();
+
