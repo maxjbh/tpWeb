@@ -4,7 +4,7 @@ var editingMode = { rect: 0, line: 1 };
 function Pencil(ctx, drawing, canvas) {
 	this.currEditingMode = editingMode.line;
 	this.currLineWidth = 5;
-	this.currColour = '#000000';
+	this.currColor = '#000000';
 	this.currentShape = 0;
 	
 
@@ -20,15 +20,21 @@ function Pencil(ctx, drawing, canvas) {
 	document.getElementById("spinnerWidth").onchange = () => {
 		this.currLineWidth = document.getElementById("spinnerWidth").value;
 	}
+	document.getElementById("color").onchange = () => {
+		this.currColor = document.getElementById("color").value;
+	}
 	
 
 	new DnD(canvas, this);
+	/*
 	ctx.fillStyle = '#F0F0F0'; // set canvas' background color
 	ctx.fillRect(0, 0, canvas.width, canvas.height);  // now fill the canvas
+	*/
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 	Pencil.prototype.onInteractionStart = function(dnd){
-		this.currLineWidth = document.getElementById("spinnerWidth").value;
+		//this.currLineWidth = document.getElementById("spinnerWidth").value;
+		//this.currColour
 		//updates the current shape
 		switch(this.currEditingMode){
 			case 0:
@@ -38,6 +44,7 @@ function Pencil(ctx, drawing, canvas) {
 			case 1:
 				this.currentShape = new Line(this.currColor, this.currLineWidth, 
 					dnd.xStart, dnd.yStart, dnd.xStart, dnd.yStart );
+					
 				break;
 		}
 		//Repaint the drawing
@@ -64,6 +71,7 @@ function Pencil(ctx, drawing, canvas) {
 	}
 	Pencil.prototype.onInteractionEnd = function(dnd){
 		drawing.forms.push(this.currentShape);
+		drawing.updateShapeList(this.currentShape, ctx);
 	}
 };
 

@@ -13,6 +13,7 @@ function Rectangle(color, lineThickness, xStart, yStart, width, height){
     this.yStart = yStart;
     this.width = width;
     this.height = height;
+    this.name = "Rectangle ";
 }
 Rectangle.prototype = new Form();
 
@@ -22,6 +23,7 @@ function Line(color, lineThickness, xStart, yStart, xEnd, yEnd){
     this.xEnd = xEnd;
     this.yStart = yStart;
     this.yEnd = yEnd;
+    this.name = "Line ";
 }
 Line.prototype = new Form();
 
